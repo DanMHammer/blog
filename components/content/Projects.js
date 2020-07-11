@@ -82,7 +82,7 @@ const NextDash = ({ theme }) => {
                     Create and Preview important SQL queries to prevent errors
                   </p>
                 </Carousel.Item>
-                <Carousel.Item>
+                {/* <Carousel.Item>
                   <img
                     className="d-block w-100"
                     src="/images/projects/reports.png"
@@ -93,7 +93,7 @@ const NextDash = ({ theme }) => {
                     Queries database to create a report and caches the data in
                     Redis to make it shareable.
                   </p>
-                </Carousel.Item>
+                </Carousel.Item> */}
               </Carousel>
             </Col>
           </Row>
