@@ -42,6 +42,7 @@ const NextDash = ({ theme }) => {
                     useSWR hook for consistent refreshes on individual
                     components
                   </li>
+                  <li>Fast data filters</li>
                   <li>Accessible Color Schemes</li>
                   <li>Dark Mode</li>
                   <li>Responsive Breakpoints up to 5000 px wide</li>
@@ -57,7 +58,7 @@ const NextDash = ({ theme }) => {
                 <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src="/images/projects/nextdash-light.png"
+                    src="/images/projects/nextdash-light.jpg"
                     alt="Server Dashboard Light Mode"
                   />
                   <h3>Server Dashboard - Light Mode</h3>
@@ -66,7 +67,7 @@ const NextDash = ({ theme }) => {
                 <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src="/images/projects/nextdash-dark.png"
+                    src="/images/projects/nextdash-dark.jpg"
                     alt="Server Dashboard Dark Mode"
                   />
                   <h3>Server Dashboard - Dark Mode</h3>
@@ -83,10 +84,10 @@ const NextDash = ({ theme }) => {
                     Create and Preview important SQL queries to prevent errors
                   </p>
                 </Carousel.Item>
-                {/* <Carousel.Item>
+                <Carousel.Item>
                   <img
                     className="d-block w-100"
-                    src="/images/projects/reports.png"
+                    src="/images/projects/reports.jpg"
                     alt="Reports"
                   />
                   <h3>Reports Pages</h3>
@@ -94,7 +95,7 @@ const NextDash = ({ theme }) => {
                     Queries database to create a report and caches the data in
                     Redis to make it shareable.
                   </p>
-                </Carousel.Item> */}
+                </Carousel.Item>
               </Carousel>
             </Col>
           </Row>
