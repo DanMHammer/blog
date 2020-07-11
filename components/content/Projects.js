@@ -161,7 +161,8 @@ const Blog = ({ theme }) => {
           <Row>
             <Card.Text>
               This blog is written in React with NextJS and deployed on Vercel
-              automatically. More content and projects to come!
+              automatically. More content and projects to come! <br />
+              <a href="https://github.com/DanMHammer/blog">Repo Link</a>
             </Card.Text>
           </Row>
         </Container>
