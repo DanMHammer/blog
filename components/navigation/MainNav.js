@@ -18,7 +18,7 @@ const MainNav = () => {
   const icon_height = "25px";
 
   return (
-    <Navbar bg={theme.variant} variant={theme.variant} sticky="top">
+    <Navbar expand="md" bg={theme.variant} variant={theme.variant} sticky="top">
       <Navbar.Brand style={{ marginLeft: "15vw" }}>Dan Hammer</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -53,14 +53,14 @@ const MainNav = () => {
                 src={theme.linkedin}
               />
             </Nav.Link>
+            <Button
+              variant={theme.outlineButtonContrast}
+              onClick={(e) => toggleTheme(e)}
+              style={{ marginRight: "15vw" }}
+            >
+              Theme: {theme.variant}
+            </Button>
           </Nav>
-          <Button
-            variant={theme.outlineButtonContrast}
-            onClick={(e) => toggleTheme(e)}
-            style={{ marginRight: "15vw" }}
-          >
-            Theme: {theme.variant}
-          </Button>
         </Form>
       </Navbar.Collapse>
     </Navbar>

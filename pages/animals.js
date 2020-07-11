@@ -1,16 +1,22 @@
-import { Carousel, Container } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 
-import About from "../components/content/About";
+import { Carousel } from "react-responsive-carousel";
+import { Container } from "react-bootstrap";
 import Image from "react-image-resizer";
 import MainNav from "../components/navigation/MainNav";
-import Projects from "../components/content/Projects";
 import { ThemeContext } from "../components/context/ThemeContext";
-import styled from "styled-components";
+import { useMedia } from "react-media";
 
-export default function Home() {
+export default function Animals() {
   const [showChild, setShowChild] = useState(false);
   const { theme } = useContext(ThemeContext);
+
+  const GLOBAL_MEDIA_QUERIES = {
+    small: "(max-width: 599px)",
+    medium: "(min-width: 600px) and (max-width: 1199px)",
+    large: "(min-width: 1200px)",
+  };
+  const matches = useMedia({ queries: GLOBAL_MEDIA_QUERIES });
 
   useEffect(() => {
     setShowChild(true);
@@ -20,53 +26,35 @@ export default function Home() {
     return <div></div>;
   }
 
-  const HR = styled.hr`
-    color: ${theme.textColor};
-    height: 1px;
-    background-color: ${theme.textColor};
-  `;
-
   return (
-    <div>
+    <div style={{ backgroundColor: theme.backgroundColor }}>
       <MainNav />
       <br />
-      <Container>
-        <Carousel
-          style={{
-            backgroundColor: theme.imageBackgroundColor,
-            width: "700px",
-            margin: "auto",
-          }}
-        >
+      <div
+        style={{
+          width: matches.medium || matches.large ? "800px" : "400px",
+          height: "95vh",
+          margin: "auto",
+        }}
+        className="carousel-outer-div"
+      >
+        <Carousel showArrows={true}>
           {images.map((image) => {
             return (
-              <Carousel.Item>
+              <div>
                 <Image
-                  className="d-block w-100"
                   src={image.src}
                   alt={image.alt}
-                  height={700}
-                  width={700}
+                  height={matches.medium || matches.large ? 800 : 600}
+                  width={matches.medium || matches.large ? 800 : 400}
+                  className="images"
                 />
-                <br />
-                <br />
-                <br />
-                <Carousel.Caption>{image.caption}</Carousel.Caption>
-              </Carousel.Item>
+                <p className="legend">{image.caption}</p>
+              </div>
             );
           })}
         </Carousel>
-      </Container>
-      <style jsx global>
-        {`
-          body {
-            background-color: ${theme.backgroundColor};
-            color: ${theme.textColor};
-          }
-          hr {
-          }
-        `}
-      </style>
+      </div>
     </div>
   );
 }

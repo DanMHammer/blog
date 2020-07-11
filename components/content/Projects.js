@@ -14,13 +14,30 @@ const Projects = () => {
       <br />
       <Blog theme={theme} />
       <br />
+      <style jsx global>
+        {`
+          @media (min-width: 0px) {
+            .card {
+              height: 800px;
+            }
+          }
+          @media (min-width: 1200px) {
+            .card {
+              height: 600px;
+            }
+          }
+          .simplecard {
+            height: 200px !important;
+          }
+        `}
+      </style>
     </>
   );
 };
 
 const NextDash = ({ theme }) => {
   return (
-    <Card bg={theme.variant} style={{ height: "65vh" }}>
+    <Card bg={theme.variant}>
       <Card.Header as="h4">
         NextJS Internal Dashboard for CrossBrowserTesting
       </Card.Header>
@@ -105,7 +122,7 @@ const NextDash = ({ theme }) => {
 
 const Ansible = ({ theme }) => {
   return (
-    <Card bg={theme.variant} style={{ height: "75vh" }}>
+    <Card bg={theme.variant}>
       <Card.Header as="h4">
         Windows Ansible Playbooks for CrossBrowserTesting
       </Card.Header>
@@ -166,7 +183,7 @@ const Ansible = ({ theme }) => {
 
 const Blog = ({ theme }) => {
   return (
-    <Card bg={theme.variant}>
+    <Card bg={theme.variant} className="simplecard">
       <Card.Header as="h4">This blog!</Card.Header>
       <Card.Body>
         <Card.Title></Card.Title>
