@@ -2,6 +2,7 @@ import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 
 import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
+import { useMedia } from "react-media";
 
 const Projects = () => {
   const { theme } = useContext(ThemeContext);
@@ -14,23 +15,6 @@ const Projects = () => {
       <br />
       <Blog theme={theme} />
       <br />
-      <style jsx global>
-        {`
-          @media (min-width: 0px) {
-            .card {
-              height: 800px;
-            }
-          }
-          @media (min-width: 1200px) {
-            .card {
-              height: 600px;
-            }
-          }
-          .simplecard {
-            height: 200px !important;
-          }
-        `}
-      </style>
     </>
   );
 };
@@ -131,24 +115,12 @@ const Ansible = ({ theme }) => {
         <Container>
           <Row>
             <Col sm={8}>
-              <Carousel indicators={false}>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="/images/projects/awx.png"
-                    alt="AWX"
-                  />
-                  <h3>AWX</h3>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="/images/projects/playbook.png"
-                    alt="AWX"
-                  />
-                  <h3>Main Playbook</h3>
-                </Carousel.Item>
-              </Carousel>
+              <img
+                className="d-block w-100"
+                src="/images/projects/awx.png"
+                alt="AWX"
+              />
+              <h3>AWX</h3>
             </Col>
             <Col sm={4}>
               <Card.Text>
