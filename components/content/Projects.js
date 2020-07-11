@@ -135,13 +135,26 @@ const Ansible = ({ theme }) => {
             </Col>
             <Col sm={4}>
               <Card.Text>
-                Playbooks that are run on a dynamic inventory through AWX to
-                ensure new browsers are quickly installed, all selenium driver
-                files are in place, and the VMs are in a good state. Reduced the
-                time to deploy new browsers on 300 Windows VMs from 3 days to 1
-                day. Support now only has to create database entries for the
-                software, upload the zipped browser to a server, and then run
-                the playbook. No manual work is neccessary.
+                <ul>
+                  <li>Playbooks run on AWX against Windows VMs</li>
+                  <li>
+                    Ensures Web Browsers are present and quickly installs them
+                    if not
+                  </li>
+                  <li>Ensures VM state</li>
+                  <li>
+                    Reduced the time to deploy new browsers on 300 Windows VMs
+                    from 3 days to 1 day.
+                  </li>
+                  <li>
+                    Replaced a long manual process with a completely automated
+                    one.
+                  </li>
+                  <li>
+                    Create database entries with the query builders, upload new
+                    software to the server, and click run! That's it!
+                  </li>
+                </ul>
               </Card.Text>
             </Col>
           </Row>
