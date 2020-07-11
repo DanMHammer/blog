@@ -62,7 +62,6 @@ const NextDash = ({ theme }) => {
                     alt="Server Dashboard Light Mode"
                   />
                   <h3>Server Dashboard - Light Mode</h3>
-                  <p>Note: Black Bars obscure internal info.</p>
                 </Carousel.Item>
                 <Carousel.Item>
                   <img
@@ -71,7 +70,6 @@ const NextDash = ({ theme }) => {
                     alt="Server Dashboard Dark Mode"
                   />
                   <h3>Server Dashboard - Dark Mode</h3>
-                  <p>Note: Black Bars obscure internal info.</p>
                 </Carousel.Item>
                 <Carousel.Item>
                   <img
