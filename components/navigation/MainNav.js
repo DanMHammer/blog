@@ -19,9 +19,7 @@ const MainNav = () => {
 
   return (
     <Navbar bg={theme.variant} variant={theme.variant} sticky="top">
-      <Navbar.Brand style={{ marginLeft: "15vw" }} href="#home">
-        Dan Hammer
-      </Navbar.Brand>
+      <Navbar.Brand style={{ marginLeft: "15vw" }}>Dan Hammer</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
