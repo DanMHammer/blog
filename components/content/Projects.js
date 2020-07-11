@@ -7,11 +7,18 @@ import { useMedia } from "react-media";
 const Projects = () => {
   const { theme } = useContext(ThemeContext);
 
+  const GLOBAL_MEDIA_QUERIES = {
+    small: "(max-width: 599px)",
+    medium: "(min-width: 600px) and (max-width: 1199px)",
+    large: "(min-width: 1200px)",
+  };
+  const matches = useMedia({ queries: GLOBAL_MEDIA_QUERIES });
+
   return (
     <>
-      <NextDash theme={theme} />
+      <NextDash theme={theme} matches={matches} />
       <br />
-      <Ansible theme={theme} />
+      <Ansible theme={theme} matches={matches} />
       <br />
       <Blog theme={theme} />
       <br />
@@ -19,13 +26,15 @@ const Projects = () => {
   );
 };
 
-const NextDash = ({ theme }) => {
+const NextDash = ({ theme, matches }) => {
   return (
     <Card bg={theme.variant}>
       <Card.Header as="h4">
         NextJS Internal Dashboard for CrossBrowserTesting
       </Card.Header>
-      <Card.Body>
+      <Card.Body
+        style={{ height: matches.medium || matches.large ? "500px" : "700px" }}
+      >
         <Card.Title></Card.Title>
         <Container>
           <Row>
@@ -103,7 +112,7 @@ const NextDash = ({ theme }) => {
   );
 };
 
-const Ansible = ({ theme }) => {
+const Ansible = ({ theme, matches }) => {
   return (
     <Card bg={theme.variant}>
       <Card.Header as="h4">
