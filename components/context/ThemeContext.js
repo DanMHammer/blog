@@ -19,6 +19,7 @@ const ThemeContextProvider = ({ children }) => {
       github: "/images/GitHub-Mark-64px.png",
       linkedin: "/images/linkedin-64.png",
       mail: "/images/mail-dark-64.png",
+      imageBackgroundColor: "#525675",
     },
     dark: {
       className: "darkmode",
@@ -33,6 +34,7 @@ const ThemeContextProvider = ({ children }) => {
       github: "/images/GitHub-Mark-Light-64px.png",
       linkedin: "/images/linkedin-light-64.png",
       mail: "/images/mail-light-64.png",
+      imageBackgroundColor: "#292b2c",
     },
   };
 

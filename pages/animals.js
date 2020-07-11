@@ -32,7 +32,11 @@ export default function Home() {
       <br />
       <Container>
         <Carousel
-          style={{ backgroundColor: "#292b2c", width: "700px", margin: "auto" }}
+          style={{
+            backgroundColor: theme.imageBackgroundColor,
+            width: "700px",
+            margin: "auto",
+          }}
         >
           {images.map((image) => {
             return (
