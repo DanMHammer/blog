@@ -1,1 +1,1 @@
-# blog
+Simple NextJS blog deployed on Vercel.

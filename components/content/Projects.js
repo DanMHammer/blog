@@ -159,26 +159,10 @@ const Blog = ({ theme }) => {
         <Card.Title></Card.Title>
         <Container>
           <Row>
-            {/* <Col sm={4}> */}
             <Card.Text>
               This blog is written in React with NextJS and deployed on Vercel
-              using GitHub Actions so that I can make improvements and quickly
-              deploy. More content and projects to come!
+              automatically. More content and projects to come!
             </Card.Text>
-            {/* </Col>
-            <Col sm={8}>
-              <Carousel indicators={false}>
-                <Carousel.Item>
-                  <img
-                    className="d-block w-100"
-                    src="/images/projects/nextdash-light.png"
-                    alt="Server Dashboard Light Mode"
-                  />
-                  <h3>Server Dashboard - Light Mode</h3>
-                  <p>Note: Black Bars obscure internal info.</p>
-                </Carousel.Item>
-              </Carousel>
-            </Col> */}
           </Row>
         </Container>
       </Card.Body>
