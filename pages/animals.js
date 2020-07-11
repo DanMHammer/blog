@@ -32,7 +32,7 @@ export default function Animals() {
       <br />
       <div
         style={{
-          width: matches.medium || matches.large ? "800px" : "400px",
+          width: matches.medium || matches.large ? "800px" : "360px",
           height: "95vh",
           margin: "auto",
         }}
@@ -46,7 +46,7 @@ export default function Animals() {
                   src={image.src}
                   alt={image.alt}
                   height={matches.medium || matches.large ? 800 : 600}
-                  width={matches.medium || matches.large ? 800 : 400}
+                  width={matches.medium || matches.large ? 800 : 360}
                   className="images"
                 />
                 <p className="legend">{image.caption}</p>
