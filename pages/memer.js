@@ -877,7 +877,6 @@ export default function Memer({ memes }) {
               id={meme.id}
               submit={submit}
               fullMeme={false}
-              key={meme.id}
             />
           );
         })}
