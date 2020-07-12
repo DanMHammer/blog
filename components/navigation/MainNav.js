@@ -27,6 +27,9 @@ const MainNav = () => {
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/animals">Animals</Nav.Link>
+          <NavDropdown title="Fun Stuff">
+            <NavDropdown.Item href="/memer">Polyglot Memer</NavDropdown.Item>
+          </NavDropdown>
         </Nav>
         <Form inline>
           <Nav className="mr-auto">
