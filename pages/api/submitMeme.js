@@ -16,7 +16,7 @@ export default (req, res) => {
     .then(function (response) {
       res.statusCode = 200;
       res.setHeader("Content-Type", "application/json");
-      res.end(response.data);
+      res.send(response.data);
     })
     .catch(function (error) {
       console.log(error);
