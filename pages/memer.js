@@ -843,7 +843,7 @@ export default function Memer({ memes }) {
 
   const submit = (id) => {
     fetch(`/api/submitMeme?id=${id}&top=${topText}&bottom=${topText}`)
-      .then((response) => response.json)
+      .then((response) => response.json())
       .then((data) => alert(data));
   };
 
