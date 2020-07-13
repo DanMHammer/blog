@@ -2,17 +2,14 @@ import fetch from "isomorphic-unfetch";
 const imgflip_user = process.env.imgflip_user;
 const imgflip_password = process.env.imgflip_password;
 
-const keyFileName = process.env.GCLOUD_CREDENTIALS;
-
 // Imports the Google Cloud client library
 const { Translate } = require("@google-cloud/translate").v2;
 
 // Creates a client
-const translate = new Translate({ keyFileName });
+const translate = new Translate();
 
 export default async (req, res) => {
   const { id, top, bottom } = req.query;
-
   const [languages] = await translate.getLanguages();
 
   const results = await multitranslate(id, languages, top, bottom);
