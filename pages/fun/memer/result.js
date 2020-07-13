@@ -13,7 +13,7 @@ export async function getServerSideProps({ query }) {
   const { id, top, bottom } = query;
 
   const res = await fetch(
-    `http://localhost:3000/api/memer/translatify?id=${id}&top=${top}&bottom=${bottom}`
+    `http://danhammer.dev/api/memer/translatify?id=${id}&top=${top}&bottom=${bottom}`
   );
   const data = await res.json();
 
