@@ -6,7 +6,10 @@ const imgflip_password = process.env.imgflip_password;
 const { Translate } = require("@google-cloud/translate").v2;
 
 // Creates a client
-const translate = new Translate();
+const translate = new Translate({
+  projectId: process.env.G_PROJECT,
+  key: process.env.G_API_KEY,
+});
 
 export default async (req, res) => {
   const { id, top, bottom } = req.query;
