@@ -29,12 +29,32 @@ const MemeContainer = styled.div`
   text-align: center;
 `;
 
-const Meme = ({ topText, bottomText, url, id, submit, fullMeme }) => {
+const Language = styled.div`
+  position: absolute;
+  bottom: -25px;
+  font-size: 20px;
+  color: white;
+  font-family: impact;
+  text-shadow: 2px 2px black;
+  z-index: 2;
+  text-align: center;
+`;
+
+const Meme = ({
+  topText,
+  bottomText,
+  url,
+  id,
+  fullMeme,
+  language,
+  translatify,
+}) => {
   const handleClose = () => setShow(false);
   const [show, setShow] = useState(false);
 
   const [top, setTop] = useState(topText);
   const [bottom, setBottom] = useState(bottomText);
+  const [preview, setPreview] = useState();
 
   useEffect(() => {
     setTop(topText);
@@ -44,15 +64,22 @@ const Meme = ({ topText, bottomText, url, id, submit, fullMeme }) => {
     setBottom(bottomText);
   }, [bottomText]);
 
+  const submit = () => {
+    fetch(`/api/memer/submitMeme?id=${id}&top=${topText}&bottom=${bottomText}`)
+      .then((response) => response.json())
+      .then((data) => setPreview(data.data.url));
+  };
+
+  useEffect(() => {}, [preview]);
+
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} onShow={fullMeme ? null : submit}>
         <Modal.Body>
           {fullMeme === false ? (
             <MemeContainer key={`modal-${id}`}>
-              <TopText style={{ fontSize: "40px" }}>{top}</TopText>
-              <Image src={url} width={400} height={400} />
-              <BottomText style={{ fontSize: "40px" }}>{bottom}</BottomText>
+              <Image src={preview} width={400} height={400} />
+              <a href={preview}>Link to image</a>
             </MemeContainer>
           ) : (
             <MemeContainer key={`modal-${id}`}>
@@ -69,11 +96,11 @@ const Meme = ({ topText, bottomText, url, id, submit, fullMeme }) => {
             <Button
               variant="primary"
               onClick={() => {
-                submit(id);
+                translatify(id, top, bottom);
                 handleClose();
               }}
             >
-              Submit
+              Translatify!
             </Button>
           ) : (
             <></>
@@ -84,6 +111,7 @@ const Meme = ({ topText, bottomText, url, id, submit, fullMeme }) => {
         <TopText>{topText}</TopText>
         <Image src={url} width={175} height={175} />
         <BottomText>{bottomText}</BottomText>
+        {fullMeme ? <Language>{language}</Language> : <></>}
       </MemeContainer>
     </>
   );

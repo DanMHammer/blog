@@ -28,7 +28,9 @@ const MainNav = () => {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/animals">Animals</Nav.Link>
           <NavDropdown title="Fun Stuff">
-            <NavDropdown.Item href="/memer">Polyglot Memer</NavDropdown.Item>
+            <NavDropdown.Item href="/fun/memer">
+              Polyglot Memer
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form inline>
