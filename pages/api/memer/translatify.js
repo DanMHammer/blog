@@ -1,12 +1,14 @@
 import fetch from "isomorphic-unfetch";
-const imgflip_user = "danhammerdev";
-const imgflip_password = "j3sk75vazAtr";
+const imgflip_user = process.env.imgflip_user;
+const imgflip_password = process.env.imgflip_password;
+
+const keyFileName = process.env.GCLOUD_CREDENTIALS;
 
 // Imports the Google Cloud client library
 const { Translate } = require("@google-cloud/translate").v2;
 
 // Creates a client
-const translate = new Translate();
+const translate = new Translate({ keyFileName });
 
 export default async (req, res) => {
   const { id, top, bottom } = req.query;
