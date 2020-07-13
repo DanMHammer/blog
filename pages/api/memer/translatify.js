@@ -10,7 +10,6 @@ const translate = new Translate();
 
 export default async (req, res) => {
   const { id, top, bottom } = req.query;
-
   const [languages] = await translate.getLanguages();
 
   const results = await multitranslate(id, languages, top, bottom);
