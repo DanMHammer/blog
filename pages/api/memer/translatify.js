@@ -18,7 +18,7 @@ export default async (req, res) => {
   console.log(languages);
 
   const results = await multitranslate(id, languages, top, bottom);
-
+  console.log(results);
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/json");
   res.send(results);
@@ -26,9 +26,17 @@ export default async (req, res) => {
 
 function translator(memes, id, top, bottom, language) {
   return new Promise(async (resolve, reject) => {
-    const [topTranslation] = await translate.translate(top, language.code);
+    var topText = top;
+    var bottomText = bottom;
+
+    if (memes.length > 0) {
+      topText = memes[memes.length - 1].top;
+      bottomText = memes[memes.length - 1].bottom;
+    }
+
+    const [topTranslation] = await translate.translate(topText, language.code);
     const [bottomTranslation] = await translate.translate(
-      bottom,
+      bottomText,
       language.code
     );
 
@@ -54,10 +62,10 @@ function translator(memes, id, top, bottom, language) {
       body: bodyParams,
     }).then((response) => response.json());
 
-    // console.log(meme);
-
     resolve(
       memes.push({
+        top: topTranslation,
+        bottom: bottomTranslation,
         url: meme.data.url,
         language: language.name,
       })
@@ -78,6 +86,5 @@ async function multitranslate(id, languages, top, bottom) {
       return translator(memes, id, top, bottom, language);
     });
   }, Promise.resolve(memes));
-
   return memes;
 }
