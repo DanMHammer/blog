@@ -11,6 +11,8 @@ const translate = new Translate({
   key: process.env.G_API_KEY,
 });
 
+// const translate = new Translate();
+
 export default async (req, res) => {
   const { id, top, bottom } = req.query;
   const [languages] = await translate.getLanguages();
