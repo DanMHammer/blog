@@ -77,7 +77,7 @@ function translator(memes, id, top, bottom, language) {
 
 async function multitranslate(id, languages, top, bottom) {
   // 16 random languages + English at the end
-  var subset = languages.sort(() => 0.5 - Math.random()).slice(0, 16);
+  var subset = languages.sort(() => 0.5 - Math.random()).slice(0, 10);
   subset.push({ code: "en", name: "English" });
   subset.unshift({ code: "en", name: "English" });
   //   console.log(subset);
