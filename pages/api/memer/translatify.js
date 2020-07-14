@@ -17,10 +17,10 @@ export default async (req, res) => {
   const { id, top, bottom } = req.query;
   const [languages] = await translate.getLanguages();
 
-  console.log(languages);
+  //   console.log(languages);
 
   const results = await multitranslate(id, languages, top, bottom);
-  console.log(results);
+  //   console.log(results);
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/json");
   res.send(results);
