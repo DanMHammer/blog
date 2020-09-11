@@ -1,5 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
 import fetch from "isomorphic-unfetch";
 
 const imgflip_user = process.env.imgflip_user;
@@ -16,7 +14,7 @@ const translate = new Translate({
 
 // const translate = new Translate();
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req, res) => {
   const { id, top, bottom } = req.query;
   const [languages] = await translate.getLanguages();
 
@@ -34,13 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 //   language: ;
 // }
 
-function translator(
-  memes: any,
-  id: string | string[],
-  top: string | string[],
-  bottom: string | string[],
-  language: any
-) {
+function translator(memes, id, top, bottom, language) {
   return new Promise(async (resolve, reject) => {
     var topText = top;
     var bottomText = bottom;
@@ -56,7 +48,7 @@ function translator(
       language.code
     );
 
-    const params: any = {
+    const params = {
       username: imgflip_user,
       password: imgflip_password,
       template_id: id,
@@ -89,26 +81,18 @@ function translator(
   });
 }
 
-async function multitranslate(
-  id: string | string[],
-  languages: any,
-  top: string | string[],
-  bottom: string | string[]
-) {
+async function multitranslate(id, languages, top, bottom) {
   // 16 random languages + English at the end
   var subset = languages.sort(() => 0.5 - Math.random()).slice(0, 10);
   subset.push({ code: "en", name: "English" });
   subset.unshift({ code: "en", name: "English" });
   //   console.log(subset);
-  var memes: any[] | PromiseLike<any[]> = [];
+  var memes = [];
   //Translate the text and then fetch the meme from imgflip
-  let result = await subset.reduce(
-    (accumulatorPromise: Promise<any>, language: any) => {
-      return accumulatorPromise.then(() => {
-        return translator(memes, id, top, bottom, language);
-      });
-    },
-    Promise.resolve(memes)
-  );
+  let result = await subset.reduce((accumulatorPromise, language) => {
+    return accumulatorPromise.then(() => {
+      return translator(memes, id, top, bottom, language);
+    });
+  }, Promise.resolve(memes));
   return memes;
 }
