@@ -1,5 +1,4 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { has, set } from "lodash";
 import {
   useCallback,
   useContext,
@@ -10,7 +9,7 @@ import {
 
 import MainNav from "../../../components/navigation/MainNav";
 import { ThemeContext } from "../../../components/context/ThemeContext";
-import produce from "immer";
+import styled from "styled-components";
 
 interface Dice {
   d2: number;
@@ -85,23 +84,55 @@ export default function Dice() {
     setRollCode(code);
   }, [dice]);
 
+  const HR = styled.hr`
+    color: ${theme.textColor};
+    height: 1px;
+    background-color: ${theme.textColor};
+  `;
+
   return (
     <div>
       <MainNav />
       <Container>
         <Col>
           <Row>
+            <Container>
+              <br />
+              <h3>Dice Roller</h3>
+              <HR />
+              <p>
+                <strong>Count:</strong> For each die size 2 sided through 20
+                sided (denoted by d2 through d20), select the number of that
+                size that need to be rolled. For example, set d2 to 2 and d8 to
+                3 if you want to roll 2 2-sided dice and 3 8-sided dice
+                together.
+                <br />
+                <br />
+                <strong>Highest:</strong> For each size, optionally choose to
+                keep only the highest x rolls in your total. For example, if you
+                want to roll 4 20-sided dice and keep only the highest 2 rolls,
+                set d20 Count to 4 and d20 Highest to 2.
+              </p>
+              <HR />
+            </Container>
+          </Row>
+          <Row style={{ margin: "auto", width: "75%" }}>
             <Col>
               <DiceSelector dice={dice} dispatch={dispatch} />
             </Col>
-            <Col>
-              <Button style={{ marginTop: 25 }} onClick={() => rollDice()}>
-                Roll!
-              </Button>
-            </Col>
           </Row>
           <br />
-          <Row>Roll Code: {rollCode}</Row>
+          <Row style={{ margin: "auto", width: "75%" }}>
+            Roll Code: {rollCode}
+          </Row>
+          <Row style={{ margin: "auto", width: "75%" }}>
+            <Button
+              style={{ marginTop: 25, padding: 10 }}
+              onClick={() => rollDice()}
+            >
+              Roll!
+            </Button>
+          </Row>
           <br />
           {diceImage != "" ? (
             <>
@@ -149,7 +180,7 @@ const DiceSelector = ({ dice, dispatch }: SelectorProps) => {
         <Col style={{ marginTop: 40 }}>Count</Col>
         {["d2", "d4", "d6", "d8", "d10", "d12", "d20"].map((size) => {
           return (
-            <Col>
+            <Col key={`${size}-count-col`}>
               <Form.Label>{size}</Form.Label>
               <Form.Control
                 as="select"
@@ -167,10 +198,10 @@ const DiceSelector = ({ dice, dispatch }: SelectorProps) => {
       </Form.Row>
       <br />
       <Form.Row>
-        <Col>Highest</Col>
+        <Col key={"highest-col"}>Highest</Col>
         {["d2", "d4", "d6", "d8", "d10", "d12", "d20"].map((size) => {
           return (
-            <Col>
+            <Col key={`${size}-highest-col`}>
               <Form.Control
                 as="select"
                 value={dice[`${size}high`]}
