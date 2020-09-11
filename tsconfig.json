@@ -21,7 +21,7 @@
     "**/*.tsx",
     "components/content/About.tsx",
     "components/content/Projects.tsx",
-    "pages/api/memer/translatify.js",
-    "pages/api/memer/submitMeme.js"
+    "pages/api/memer/translatify.ts",
+    "pages/api/memer/submitMeme.ts"
   ]
 }

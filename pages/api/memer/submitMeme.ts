@@ -1,14 +1,14 @@
-//Leaving in JS for now as the imgflip api requires the weird encodeURI bits
+import { NextApiRequest, NextApiResponse } from "next";
 
 import fetch from "isomorphic-unfetch";
 
 const imgflip_user = process.env.imgflip_user;
 const imgflip_password = process.env.imgflip_password;
 
-export default (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const { id, top, bottom } = req.query;
 
-  const params = {
+  const params: any = {
     username: imgflip_user,
     password: imgflip_password,
     template_id: id,
