@@ -65,7 +65,7 @@ export default function Dice() {
   const [dice, dispatch] = useReducer(reducer, Empty);
 
   const rollDice = async () => {
-    const res = await fetch(`http://k8s.danhammer.dev/roll/${rollCode}`);
+    const res = await fetch(`https://k8s.danhammer.dev/roll/${rollCode}`);
     const data = await res.json();
     setDiceImage(data.image);
   };
