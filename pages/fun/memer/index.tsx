@@ -33,7 +33,7 @@ interface Props {
 }
 
 export default function Memer({ memes }: Props) {
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const [templates, setTemplates] = useState(
     memes.sort(() => 0.5 - Math.random()).slice(0, 18)

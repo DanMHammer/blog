@@ -1,11 +1,11 @@
 import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
+import { Context, useContext } from "react";
+import { ThemeContext, ThemeContextType } from "../context/ThemeContext";
 
-import { ThemeContext } from "../context/ThemeContext";
-import { useContext } from "react";
 import { useMedia } from "react-media";
 
 const Projects = () => {
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const GLOBAL_MEDIA_QUERIES = {
     small: "(max-width: 599px)",
@@ -26,7 +26,12 @@ const Projects = () => {
   );
 };
 
-const NextDash = ({ theme, matches }) => {
+interface Props {
+  theme: ThemeContextType;
+  matches?: any;
+}
+
+const NextDash = ({ theme, matches }: Props) => {
   return (
     <Card bg={theme.variant}>
       <Card.Header as="h4">
@@ -112,7 +117,7 @@ const NextDash = ({ theme, matches }) => {
   );
 };
 
-const Ansible = ({ theme, matches }) => {
+const Ansible = ({ theme, matches }: Props) => {
   return (
     <Card bg={theme.variant}>
       <Card.Header as="h4">
@@ -161,7 +166,7 @@ const Ansible = ({ theme, matches }) => {
   );
 };
 
-const Blog = ({ theme }) => {
+const Blog = ({ theme }: Props) => {
   return (
     <Card bg={theme.variant} className="simplecard">
       <Card.Header as="h4">This blog!</Card.Header>

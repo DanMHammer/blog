@@ -9,7 +9,7 @@ import { useMedia } from "react-media";
 
 export default function Animals() {
   const [showChild, setShowChild] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const GLOBAL_MEDIA_QUERIES = {
     small: "(max-width: 599px)",

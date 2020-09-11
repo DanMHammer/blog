@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //Copied from https://usehooks.com/useLocalStorage/
-const useLocalStorage = (key, initialValue) => {
+const useLocalStorage = (key: string, initialValue: string) => {
   // State to store our value
 
   // Pass initial state function to useState so logic is only executed once
@@ -28,7 +28,7 @@ const useLocalStorage = (key, initialValue) => {
 
   // ... persists the new value to localStorage.
 
-  const setValue = (value) => {
+  const setValue = (value: any) => {
     try {
       // Allow value to be a function so we have same API as useState
 

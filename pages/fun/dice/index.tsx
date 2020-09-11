@@ -50,7 +50,12 @@ const Empty: Dice = {
   minus: 0,
 };
 
-function reducer(state, { field, value }) {
+interface Action {
+  field: string;
+  value: any;
+}
+
+function reducer(state: any, { field, value }: Action) {
   return {
     ...state,
     [field]: value,
@@ -58,7 +63,7 @@ function reducer(state, { field, value }) {
 }
 
 export default function Dice() {
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   const [diceImage, setDiceImage] = useState("");
   const [rollCode, setRollCode] = useState("4d20");
   const [dice, dispatch] = useReducer(reducer, Empty);
@@ -177,7 +182,7 @@ type SelectorProps = {
 const DiceSelector = ({ dice, dispatch }: SelectorProps) => {
   const { d2, d4, d6, d8, d10, d12, d20 } = dice;
 
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     dispatch({ field: e.target.name, value: parseInt(e.target.value) });
   };
 

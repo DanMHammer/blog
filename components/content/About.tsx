@@ -3,7 +3,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 
 const About = () => {
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   return (
     <p>

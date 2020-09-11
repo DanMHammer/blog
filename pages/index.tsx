@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 export default function Home() {
   const [showChild, setShowChild] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     setShowChild(true);

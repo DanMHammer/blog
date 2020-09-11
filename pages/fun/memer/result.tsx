@@ -35,7 +35,7 @@ interface Props {
 }
 
 export default function Memer({ memes }: Props) {
-  const { theme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   const [showChild, setShowChild] = useState(false);
 
   useEffect(() => {

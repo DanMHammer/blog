@@ -12,7 +12,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 
 const MainNav = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const icon_width = "25px";
   const icon_height = "25px";
@@ -65,7 +65,7 @@ const MainNav = () => {
             </Nav.Link>
             <Button
               variant={theme.outlineButtonContrast}
-              onClick={(e) => toggleTheme(e)}
+              onClick={(e) => (theme.toggleTheme ? theme.toggleTheme(e) : null)}
               style={{ marginRight: "15vw" }}
             >
               Theme: {theme.variant}
