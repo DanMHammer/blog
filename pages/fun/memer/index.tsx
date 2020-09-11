@@ -1,24 +1,24 @@
 import { Col, Container, Form, FormGroup } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 
-import Image from "react-image-resizer";
-import ImageMasonry from "react-image-masonry";
+import { GetStaticProps } from "next";
 import MainNav from "../../../components/navigation/MainNav";
 import Meme from "../../../components/memer/meme";
+import { MemeType } from "../../../components/interfaces/MemeInterface";
 import { ThemeContext } from "../../../components/context/ThemeContext";
 import fetch from "isomorphic-unfetch";
 import styled from "styled-components";
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch("https://api.imgflip.com/get_memes");
   const data = await res.json();
 
   return {
     props: {
-      memes: data.data.memes.filter((meme) => meme.box_count === 2),
+      memes: data.data.memes.filter((meme: MemeType) => meme.box_count === 2),
     },
   };
-}
+};
 
 const GridWrapper = styled.div`
   display: grid;
@@ -28,7 +28,11 @@ const GridWrapper = styled.div`
   margin: auto;
 `;
 
-export default function Memer({ memes }) {
+interface Props {
+  memes: MemeType[];
+}
+
+export default function Memer({ memes }: Props) {
   const { theme } = useContext(ThemeContext);
 
   const [templates, setTemplates] = useState(
@@ -40,8 +44,8 @@ export default function Memer({ memes }) {
 
   const [showChild, setShowChild] = useState(false);
 
-  const translatify = (id, top, bottom) => {
-    window.location = `/fun/memer/result?id=${id}&top=${top}&bottom=${bottom}`;
+  const translatify = (id: string, top: string, bottom: string): void => {
+    window.location.href = `/fun/memer/result?id=${id}&top=${top}&bottom=${bottom}`;
   };
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export default function Memer({ memes }) {
       </Form>
       <br />
       <GridWrapper>
-        {templates.map((meme) => {
+        {templates.map((meme: { url: string; id: string }) => {
           return (
             <Meme
               topText={topText}

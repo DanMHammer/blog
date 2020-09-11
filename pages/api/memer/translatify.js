@@ -1,4 +1,9 @@
+//TODO create Type for languages
+
+import { NextApiRequest, NextApiResponse } from "next";
+
 import fetch from "isomorphic-unfetch";
+
 const imgflip_user = process.env.imgflip_user;
 const imgflip_password = process.env.imgflip_password;
 
@@ -17,14 +22,19 @@ export default async (req, res) => {
   const { id, top, bottom } = req.query;
   const [languages] = await translate.getLanguages();
 
-  //   console.log(languages);
-
   const results = await multitranslate(id, languages, top, bottom);
   //   console.log(results);
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/json");
   res.send(results);
 };
+
+// interface TranslatedMemes {
+//   top: string;
+//   bottom: string;
+//   url: string;
+//   language: ;
+// }
 
 function translator(memes, id, top, bottom, language) {
   return new Promise(async (resolve, reject) => {

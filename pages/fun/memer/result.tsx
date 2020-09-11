@@ -1,16 +1,16 @@
 import { Col, Container, Form, FormGroup } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 
-import Image from "react-image-resizer";
-import ImageMasonry from "react-image-masonry";
+import { GetServerSideProps } from "next";
 import MainNav from "../../../components/navigation/MainNav";
 import Meme from "../../../components/memer/meme";
+import { MemeType } from "../../../components/interfaces/MemeInterface";
 import { ThemeContext } from "../../../components/context/ThemeContext";
 import fetch from "isomorphic-unfetch";
 import styled from "styled-components";
 
-export async function getServerSideProps({ query }) {
-  const { id, top, bottom } = query;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id, top, bottom } = context.query;
 
   const res = await fetch(
     `http://danhammer.dev/api/memer/translatify?id=${id}&top=${top}&bottom=${bottom}`
@@ -20,7 +20,7 @@ export async function getServerSideProps({ query }) {
   return {
     props: { memes: data },
   };
-}
+};
 
 const GridWrapper = styled.div`
   display: grid;
@@ -30,7 +30,11 @@ const GridWrapper = styled.div`
   margin: auto;
 `;
 
-export default function Memer({ memes }) {
+interface Props {
+  memes: MemeType[];
+}
+
+export default function Memer({ memes }: Props) {
   const { theme } = useContext(ThemeContext);
   const [showChild, setShowChild] = useState(false);
 
@@ -47,18 +51,10 @@ export default function Memer({ memes }) {
       <MainNav />
       <br />
       <GridWrapper>
-        {memes.map((meme) => {
+        {memes.map((meme: MemeType) => {
           return (
             <>
-              <Meme
-                topText={null}
-                bottomText={null}
-                url={meme.url}
-                id={null}
-                fullMeme={true}
-                translatify={null}
-                language={meme.language}
-              />
+              <Meme url={meme.url} />
             </>
           );
         })}

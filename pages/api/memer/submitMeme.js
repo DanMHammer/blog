@@ -1,4 +1,7 @@
+//Leaving in JS for now as the imgflip api requires the weird encodeURI bits
+
 import fetch from "isomorphic-unfetch";
+
 const imgflip_user = process.env.imgflip_user;
 const imgflip_password = process.env.imgflip_password;
 

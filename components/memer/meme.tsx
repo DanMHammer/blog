@@ -40,6 +40,16 @@ const Language = styled.div`
   text-align: center;
 `;
 
+interface Props {
+  topText?: string;
+  bottomText?: string;
+  url: string;
+  id?: string;
+  fullMeme?: boolean;
+  language?: string;
+  translatify?: (id: string, top: string, bottom: string) => void;
+}
+
 const Meme = ({
   topText,
   bottomText,
@@ -48,7 +58,7 @@ const Meme = ({
   fullMeme,
   language,
   translatify,
-}) => {
+}: Props) => {
   const handleClose = () => setShow(false);
   const [show, setShow] = useState(false);
 
@@ -92,7 +102,11 @@ const Meme = ({
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          {fullMeme === false ? (
+          {fullMeme === false &&
+          translatify != undefined &&
+          id != undefined &&
+          top != undefined &&
+          bottom != undefined ? (
             <Button
               variant="primary"
               onClick={() => {
