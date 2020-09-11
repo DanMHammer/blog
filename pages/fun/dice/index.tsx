@@ -136,10 +136,10 @@ export default function Dice() {
           <br />
           {diceImage != "" ? (
             <>
-              <Row>
+              <Row style={{ margin: "auto", width: "75%" }}>
                 <img style={{ backgroundColor: "white" }} src={diceImage} />
               </Row>
-              <Row>
+              <Row style={{ margin: "auto", width: "75%" }}>
                 <a href={diceImage}>Share</a>
               </Row>
             </>
