@@ -51,7 +51,7 @@ const Empty: Dice = {
   minus: 0,
 };
 
-function reducer(state: Dice, { field: any, value: any }) {
+function reducer(state, { field, value }) {
   return {
     ...state,
     [field]: value,
