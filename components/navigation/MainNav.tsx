@@ -28,9 +28,9 @@ const MainNav = () => {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/animals">Animals</Nav.Link>
           <NavDropdown id="fun stuff" title="Fun Stuff">
-            <NavDropdown.Item id="memer" href="/fun/memer">
+            {/* <NavDropdown.Item id="memer" href="/fun/memer">
               Polyglot Memer
-            </NavDropdown.Item>
+            </NavDropdown.Item> */}
             <NavDropdown.Item id="dice" href="/fun/dice">
               Dice Roller
             </NavDropdown.Item>
