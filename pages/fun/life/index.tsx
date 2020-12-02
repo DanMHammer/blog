@@ -22,6 +22,7 @@ export default function Life({}) {
   const [size, setSize] = useState<number>(10);
   const [intervals, setIntervalCount] = useState<number>(10);
   const [running, setRunning] = useState(false);
+  const [length, setLength] = useState(1000);
 
   const Controls = () => {
     return (
@@ -49,6 +50,14 @@ export default function Life({}) {
           min={3}
           max={100}
         />
+        Interval Length in Seconds:{" "}
+        <RangeSlider
+          value={length / 1000}
+          onChange={(e) => setLength(+e.target.value * 1000)}
+          min={0.1}
+          step={0.1}
+          max={5}
+        />
         <Button style={{ width: 100 }} onClick={() => setRunning(!running)}>
           {running ? "Stop" : "Start"}
         </Button>
@@ -69,12 +78,18 @@ export default function Life({}) {
     >
       <MainNav />
       <Controls />
-      <Game size={size} theme={theme} intervals={intervals} running={running} />
+      <Game
+        size={size}
+        theme={theme}
+        intervals={intervals}
+        running={running}
+        length={length}
+      />
     </div>
   );
 }
 
-const Game = ({ size, theme, intervals, running }) => {
+const Game = ({ size, theme, intervals, running, length }) => {
   const [count, setCount] = useState<number>(1);
 
   //Random live and dead cells matrix
@@ -91,7 +106,7 @@ const Game = ({ size, theme, intervals, running }) => {
         [...Array(size)].map(() => Math.floor(Math.random() * 2))
       )
     );
-  }, [size, intervals, running]);
+  }, [size, intervals, running, length]);
 
   //Run once to start
   useEffect(() => {
@@ -100,7 +115,7 @@ const Game = ({ size, theme, intervals, running }) => {
         setCount(count + 1);
         update();
       }
-    }, 1000);
+    }, length);
     return () => clearInterval(interval);
   }, [cells]);
 
