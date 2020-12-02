@@ -40,15 +40,17 @@ export default function Life({}) {
         <RangeSlider
           value={size}
           onChange={(e) => setSize(+e.target.value)}
-          min={3}
+          min={5}
           max={100}
+          step={1}
         />
         Intervals:{" "}
         <RangeSlider
           value={intervals}
           onChange={(e) => setIntervalCount(+e.target.value)}
-          min={3}
-          max={100}
+          min={10}
+          max={500}
+          step={5}
         />
         Interval Length in Seconds:{" "}
         <RangeSlider
@@ -67,7 +69,7 @@ export default function Life({}) {
 
   useEffect(() => {
     setRunning(false);
-  }, [size, intervals]);
+  }, [size, intervals, length]);
 
   return (
     <div
