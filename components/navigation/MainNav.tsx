@@ -34,6 +34,9 @@ const MainNav = () => {
             <NavDropdown.Item id="dice" href="/fun/dice">
               Dice Roller
             </NavDropdown.Item>
+            <NavDropdown.Item id="life" href="/fun/life">
+              Game of Life
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form inline>
