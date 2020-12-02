@@ -49,7 +49,7 @@ export default function Life({}) {
           value={intervals}
           onChange={(e) => setIntervalCount(+e.target.value)}
           min={10}
-          max={500}
+          max={100}
           step={5}
         />
         Interval Length in Seconds:{" "}
