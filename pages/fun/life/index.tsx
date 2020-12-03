@@ -16,6 +16,7 @@ import MainNav from "../../../components/navigation/MainNav";
 import { ThemeContext } from "../../../components/context/ThemeContext";
 import RangeSlider from "react-bootstrap-range-slider";
 import Button from "react-bootstrap/Button";
+import Media from "react-media";
 
 export default function Life({}) {
   const theme = useContext(ThemeContext);
@@ -24,12 +25,12 @@ export default function Life({}) {
   const [running, setRunning] = useState(false);
   const [length, setLength] = useState(1000);
 
-  const Controls = () => {
+  const Controls = ({ width }) => {
     return (
       <div
         style={{
-          paddingTop: 50,
-          width: 500,
+          paddingTop: 10,
+          width: width,
           margin: "auto",
           color: theme.textColor,
           display: "grid",
@@ -76,22 +77,38 @@ export default function Life({}) {
       style={{
         backgroundColor: theme.backgroundColor,
         height: "100vh",
+        width: "100vw",
       }}
     >
-      <MainNav />
-      <Controls />
-      <Game
-        size={size}
-        theme={theme}
-        intervals={intervals}
-        running={running}
-        length={length}
-      />
+      <Media
+        queries={{
+          small: "(max-width: 599px)",
+          medium: "(min-width: 600px) and (max-width: 1199px)",
+          large: "(min-width: 1200px)",
+        }}
+      >
+        {(matches) => (
+          <div>
+            <MainNav />
+            <Controls
+              width={matches.small ? 300 : matches.medium ? 400 : 500}
+            />
+            <Game
+              size={size}
+              theme={theme}
+              intervals={intervals}
+              running={running}
+              length={length}
+              width={matches.small ? 300 : matches.medium ? 400 : 500}
+            />
+          </div>
+        )}
+      </Media>
     </div>
   );
 }
 
-const Game = ({ size, theme, intervals, running, length }) => {
+const Game = ({ size, theme, intervals, running, length, width }) => {
   const [count, setCount] = useState<number>(1);
 
   //Random live and dead cells matrix
@@ -190,8 +207,8 @@ const Game = ({ size, theme, intervals, running, length }) => {
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${size}, 1fr)`,
-          width: 500,
-          height: 500,
+          width: width,
+          height: width,
           margin: "auto",
           paddingTop: 10,
         }}
@@ -201,16 +218,16 @@ const Game = ({ size, theme, intervals, running, length }) => {
             item === 1 ? (
               <div
                 style={{
-                  height: `${500 / size}px`,
-                  width: `${500 / size}px`,
+                  height: `${width / size}px`,
+                  width: `${width / size}px`,
                   backgroundColor: "aqua",
                 }}
               ></div>
             ) : (
               <div
                 style={{
-                  height: `${500 / size}px`,
-                  width: `${500 / size}px`,
+                  height: `${width / size}px`,
+                  width: `${width / size}px`,
                   backgroundColor: "black",
                 }}
               ></div>
@@ -227,8 +244,8 @@ const Game = ({ size, theme, intervals, running, length }) => {
         style={{
           color: theme.textColor,
           margin: "auto",
-          paddingTop: 5,
-          width: 500,
+          padding: 10,
+          width: width,
         }}
       >
         Interval: {count} out of {intervals}
