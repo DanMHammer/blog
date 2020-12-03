@@ -11,7 +11,6 @@ Implement Conway's Game of Life. It should be able to be initialized with a star
 */
 
 import { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
 import MainNav from "../../../components/navigation/MainNav";
 import { ThemeContext } from "../../../components/context/ThemeContext";
 import RangeSlider from "react-bootstrap-range-slider";
@@ -68,9 +67,19 @@ export default function Life({}) {
     );
   };
 
+  const [showChild, setShowChild] = useState(false);
+
   useEffect(() => {
     setRunning(false);
   }, [size, intervals, length]);
+
+  useEffect(() => {
+    setShowChild(true);
+  }, []);
+
+  if (!showChild) {
+    return <div></div>;
+  }
 
   return (
     <div
@@ -110,6 +119,7 @@ export default function Life({}) {
 
 const Game = ({ size, theme, intervals, running, length, width }) => {
   const [count, setCount] = useState<number>(1);
+  //   const [alive, setAlive] = useState<number>(1);
 
   //Random live and dead cells matrix
   const [cells, setCells] = useState<number[][]>(
@@ -201,38 +211,72 @@ const Game = ({ size, theme, intervals, running, length, width }) => {
     setCells(newCells);
   };
 
+  //   const Board = () => {
+  //     return (
+  //       <div
+  //         style={{
+  //           display: "grid",
+  //           gridTemplateColumns: `repeat(${size}, 1fr)`,
+  //           width: width,
+  //           height: width,
+  //           margin: "auto",
+  //           paddingTop: 10,
+  //         }}
+  //       >
+  //         {cells.map((row, xindex) =>
+  //           row.map((item, yindex) =>
+  //             item === 1 ? (
+  //               <div
+  //                 key={`${xindex}-${yindex}`}
+  //                 style={{
+  //                   height: `${width / size}px`,
+  //                   width: `${width / size}px`,
+  //                   backgroundColor: "aqua",
+  //                 }}
+  //               ></div>
+  //             ) : (
+  //               <div
+  //                 key={`${xindex}-${yindex}`}
+  //                 style={{
+  //                   height: `${width / size}px`,
+  //                   width: `${width / size}px`,
+  //                   backgroundColor: "black",
+  //                 }}
+  //               ></div>
+  //             )
+  //           )
+  //         )}
+  //       </div>
+  //     );
+  //   };
+
   const Board = () => {
     return (
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${size}, 1fr)`,
+          //   display: "grid",
+          //   gridTemplateColumns: `repeat(${size}, 1fr)`,
           width: width,
           height: width,
           margin: "auto",
           paddingTop: 10,
+          position: "relative",
         }}
       >
-        {cells.map((row) =>
-          row.map((item) =>
-            item === 1 ? (
-              <div
-                style={{
-                  height: `${width / size}px`,
-                  width: `${width / size}px`,
-                  backgroundColor: "aqua",
-                }}
-              ></div>
-            ) : (
-              <div
-                style={{
-                  height: `${width / size}px`,
-                  width: `${width / size}px`,
-                  backgroundColor: "black",
-                }}
-              ></div>
-            )
-          )
+        {cells.map((row, xindex) =>
+          row.map((item, yindex) => (
+            <div
+              key={`${xindex}-${yindex}`}
+              style={{
+                height: `${width / size}px`,
+                width: `${width / size}px`,
+                backgroundColor: item === 1 ? "aqua" : "black",
+                left: `${(width / size) * xindex}px`,
+                top: `${(width / size) * yindex}px`,
+                position: "absolute",
+              }}
+            ></div>
+          ))
         )}
       </div>
     );
