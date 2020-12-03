@@ -49,14 +49,14 @@ export default function Life({}) {
           value={intervals}
           onChange={(e) => setIntervalCount(+e.target.value)}
           min={10}
-          max={100}
-          step={5}
+          max={1000}
+          step={10}
         />
         Interval Length in Seconds:{" "}
         <RangeSlider
           value={length / 1000}
           onChange={(e) => setLength(+e.target.value * 1000)}
-          min={0.1}
+          min={0.5}
           step={0.1}
           max={5}
         />
@@ -67,19 +67,9 @@ export default function Life({}) {
     );
   };
 
-  const [showChild, setShowChild] = useState(false);
-
   useEffect(() => {
     setRunning(false);
   }, [size, intervals, length]);
-
-  useEffect(() => {
-    setShowChild(true);
-  }, []);
-
-  if (!showChild) {
-    return <div></div>;
-  }
 
   return (
     <div
@@ -129,6 +119,15 @@ const Game = ({ size, theme, intervals, running, length, width }) => {
   );
 
   useEffect(() => {
+    if (count < intervals && running) {
+      setTimeout(() => {
+        setCount(count + 1);
+        update();
+      }, length);
+    }
+  }, [cells]);
+
+  useEffect(() => {
     setCount(0);
     setCells(
       [...Array(size)].map(() =>
@@ -136,17 +135,6 @@ const Game = ({ size, theme, intervals, running, length, width }) => {
       )
     );
   }, [size, intervals, running, length]);
-
-  //Run once to start
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (count < intervals && running) {
-        setCount(count + 1);
-        update();
-      }
-    }, length);
-    return () => clearInterval(interval);
-  }, [cells]);
 
   const update = () => {
     //Create empty matrix for new values
@@ -211,51 +199,10 @@ const Game = ({ size, theme, intervals, running, length, width }) => {
     setCells(newCells);
   };
 
-  //   const Board = () => {
-  //     return (
-  //       <div
-  //         style={{
-  //           display: "grid",
-  //           gridTemplateColumns: `repeat(${size}, 1fr)`,
-  //           width: width,
-  //           height: width,
-  //           margin: "auto",
-  //           paddingTop: 10,
-  //         }}
-  //       >
-  //         {cells.map((row, xindex) =>
-  //           row.map((item, yindex) =>
-  //             item === 1 ? (
-  //               <div
-  //                 key={`${xindex}-${yindex}`}
-  //                 style={{
-  //                   height: `${width / size}px`,
-  //                   width: `${width / size}px`,
-  //                   backgroundColor: "aqua",
-  //                 }}
-  //               ></div>
-  //             ) : (
-  //               <div
-  //                 key={`${xindex}-${yindex}`}
-  //                 style={{
-  //                   height: `${width / size}px`,
-  //                   width: `${width / size}px`,
-  //                   backgroundColor: "black",
-  //                 }}
-  //               ></div>
-  //             )
-  //           )
-  //         )}
-  //       </div>
-  //     );
-  //   };
-
   const Board = () => {
     return (
       <div
         style={{
-          //   display: "grid",
-          //   gridTemplateColumns: `repeat(${size}, 1fr)`,
           width: width,
           height: width,
           margin: "auto",
