@@ -91,7 +91,7 @@ export default function Life({}) {
           <div>
             <MainNav />
             <Controls
-              width={matches.small ? 300 : matches.medium ? 400 : 500}
+              width={matches.small ? 300 : matches.medium ? 500 : 600}
             />
             <Game
               size={size}
@@ -99,7 +99,7 @@ export default function Life({}) {
               intervals={intervals}
               running={running}
               length={length}
-              width={matches.small ? 300 : matches.medium ? 400 : 500}
+              width={matches.small ? 300 : matches.medium ? 500 : 600}
             />
           </div>
         )}
