@@ -11,7 +11,7 @@
     "@google-cloud/translate": "^6.0.2",
     "@types/lodash": "^4.14.161",
     "@types/react-bootstrap-range-slider": "^1.2.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "isomorphic-unfetch": "^3.0.0",
     "jquery": "^3.5.1",
